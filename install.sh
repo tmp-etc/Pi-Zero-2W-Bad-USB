@@ -1,7 +1,7 @@
 #!/bin/bash
 # Install / refresh the BadUSB toolkit on a Raspberry Pi.
 #
-# Idempotent: copies the project into /home/pi/pi-badusb (if run from
+# Idempotent: copies the project into /home/$THE_USER/pi-badusb (if run from
 # elsewhere), installs the systemd unit and the udev rule, ensures dwc2
 # is enabled in firmware config, and adds the pi user to the plugdev
 # group.
@@ -13,7 +13,8 @@ if [ "$(id -u)" -ne 0 ]; then
     exit 1
 fi
 
-TARGET_DIR="/home/pi/pi-badusb"
+THE_USER="jne"
+TARGET_DIR="/home/$THE_USER/pi-badusb"
 SRC_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # Detect firmware paths (Bookworm/Trixie use /boot/firmware; older /boot)
@@ -39,7 +40,7 @@ if [ "$SRC_DIR" != "$TARGET_DIR" ]; then
         cp -a "$SRC_DIR/." "$TARGET_DIR/"
     fi
 fi
-chown -R pi:pi "$TARGET_DIR"
+chown -R $THE_USER:$THE_USER "$TARGET_DIR"
 chmod +x "$TARGET_DIR"/*.sh "$TARGET_DIR"/run_payload.py "$TARGET_DIR"/monitor_and_run.py 2>/dev/null || true
 
 # --- 2. Firmware config (dwc2 overlay + module load) ------------------------
@@ -84,7 +85,7 @@ systemctl daemon-reload
 
 # --- 5. Prepare /var/badusb for the mass-storage backing image --------------
 mkdir -p /var/badusb
-chown pi:pi /var/badusb
+chown $THE_USER:$THE_USER /var/badusb
 
 echo
 echo "Install complete."
