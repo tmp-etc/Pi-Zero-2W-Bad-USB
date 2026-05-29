@@ -33,7 +33,7 @@ HID_DEVICE = "/dev/hidg0"
 ACT_LED_PATH = "/sys/class/leds/ACT/brightness"
 ACT_LED_TRIGGER = "/sys/class/leds/ACT/trigger"
 
-DEFAULT_LAYOUT = "us"
+DEFAULT_LAYOUT = "ee"
 
 RANDOM_POOLS = {
     "RANDOM_LOWERCASE_LETTER": string.ascii_lowercase,
