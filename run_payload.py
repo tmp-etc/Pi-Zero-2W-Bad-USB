@@ -646,7 +646,7 @@ def process_lines(lines: List[str], state: dict) -> None:
 
 # ============================ Entry point ==================================
 def main(argv: List[str]) -> int:
-    default_path = "/home/pi/pi-badusb/payload.txt"
+    default_path = "/home/jne/pi-badusb/payload.txt"
     path = argv[1] if len(argv) > 1 else default_path
     run_ducky(path)
     time.sleep(POST_PAYLOAD_BLINK_WAIT / 1000)
