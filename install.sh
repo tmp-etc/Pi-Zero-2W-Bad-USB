@@ -69,9 +69,9 @@ if grep -q 'g_ether' "$CMDLINE_TXT"; then
 fi
 
 # --- 3. plugdev group + udev rule -------------------------------------------
-echo "==> Ensuring pi is in the plugdev group"
+echo "==> Ensuring the user is in the plugdev group"
 getent group plugdev >/dev/null || groupadd plugdev
-usermod -a -G plugdev pi
+usermod -a -G plugdev $THE_USER
 
 echo "==> Installing udev rule"
 install -m 0644 "$SRC_DIR/etc/99-badusb-hidg.rules" /etc/udev/rules.d/99-badusb-hidg.rules
