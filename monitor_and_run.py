@@ -29,8 +29,8 @@ import sys
 import time
 
 HID_DEVICE = "/dev/hidg0"
-PAYLOAD_SCRIPT = "/home/pi/pi-badusb/run_payload.py"
-RELOAD_GADGET_SCRIPT = "/home/pi/pi-badusb/reload_gadget.sh"
+PAYLOAD_SCRIPT = "/home/jne/pi-badusb/run_payload.py"
+RELOAD_GADGET_SCRIPT = "/home/jne/pi-badusb/reload_gadget.sh"
 GADGET_DIR = "/sys/kernel/config/usb_gadget/g1"
 UDC_SYSFS = "/sys/class/udc"
 
